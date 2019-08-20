@@ -1,21 +1,22 @@
 # Trip Duration Prediction
-## ML prediction on travel time between OD pairs for Uber &amp; Lyft trips.
 
 ## The Problem
 
-Given training data (´´´train.csv´´´) on Uber/Lyft trip OD locations, starting time and durations, we would like to estimate travel times between two specified locations at a given departure time using machine learning models such as SVR, random forest, neural networks. Quality of the classifiers is assessed using root mean squared error (RMSE) of the predicted versus the actual durations on the test set (´´´test.csv´´´). A Kaggle competition was setup to evaluate the results on a public test data set (20% of total test set). The link to the Kaggle competition can be found here: https://www.kaggle.com/c/ce263n-hw4
+Given training data (```train.csv```) on Uber/Lyft trip OD locations, starting time and durations, we would like to estimate travel times between two specified locations at a given departure time using machine learning models such as SVR, random forest, neural networks. Quality of the classifiers is assessed using root mean squared error (RMSE) of the predicted versus the actual durations on the test set (```test.csv```). A Kaggle competition was setup to evaluate the results on a public test data set (20% of total test set). The link to the Kaggle competition can be found here: https://www.kaggle.com/c/ce263n-hw4
 
 ### Training Set
-The training dataset (´´´train.csv´´´) contains a csv file with ride start and end locations (specified as WGS84 coordinates), trip start time (local time), and trip duration in seconds.
+The training dataset (```train.csv```) contains a csv file with ride start and end locations (specified as WGS84 coordinates), trip start time (local time), and trip duration in seconds.
 
 Each line is a trip and has the following format:
-´´´row_id, start_lng, start_lat, end_lng, end_lat, datetime, duration´´´
+
+```row_id, start_lng, start_lat, end_lng, end_lat, datetime, duration```
 
 ### Test Set
-The test dataset (´´´test.csv´´´) contains a csv file with ride start and end locations (specified as WGS84 coordinates), and trip start time (local time). You need to build model based on the training set and estimate the travel times for all trips in the test set.
+The test dataset (```test.csv```) contains a csv file with ride start and end locations (specified as WGS84 coordinates), and trip start time (local time). You need to build model based on the training set and estimate the travel times for all trips in the test set.
 
 Each line in the test set has the following format:
-´´´row_id, start_lng, start_lat, end_lng, end_lat, datetime´´´
+
+```row_id, start_lng, start_lat, end_lng, end_lat, datetime```
 
 ## Solution Strategy
 
@@ -40,7 +41,7 @@ Lastly, all trips with a small Manhattan distance were marked either as “short
 A correlation table of the features used can be seen to the right.
 
 ### *Step 3: Prediction Model*
-Many classic ML algorithms were employed to find the optimal prediction score; Linear Regression, Ridge, Lasso, SVM Regressor, Random Forest, XGBoost and FFNN. A stacked model was also considered but underperformed in terms of prediction score. The model that worked best was XGBoost, with hyper parameters ´´´max_depth=9´´´, ´´´learning_rate=0.045´´´, ´´´n_estimators=500´´´, ´´´reg_lambda=0.5´´´.
+Many classic ML algorithms were employed to find the optimal prediction score; Linear Regression, Ridge, Lasso, SVM Regressor, Random Forest, XGBoost and FFNN. A stacked model was also considered but underperformed in terms of prediction score. The model that worked best was XGBoost, with hyper parameters ```max_depth=9```, ```learning_rate=0.045```, ```n_estimators=500```, ```reg_lambda=0.5```.
 
 Kaggle RMSE score on public dataset with this model: **287.02604**
 
