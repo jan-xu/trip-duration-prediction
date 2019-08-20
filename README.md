@@ -38,8 +38,6 @@ Fourthly, weather conditions may influence travel time. Hence, historical precip
 
 Lastly, all trips with a small Manhattan distance were marked either as “short_trip” (if gmaps distance also was small) or as “routing_error” (if the gmaps distance was long) using one-hot encoding.
 
-A correlation table of the features used can be seen to the right.
-
 ### *Step 3: Prediction Model*
 Many classic ML algorithms were employed to find the optimal prediction score; Linear Regression, Ridge, Lasso, SVM Regressor, Random Forest, XGBoost and FFNN. A stacked model was also considered but underperformed in terms of prediction score. The model that worked best was XGBoost, with hyper parameters ```max_depth=9```, ```learning_rate=0.045```, ```n_estimators=500```, ```reg_lambda=0.5```.
 
